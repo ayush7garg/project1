@@ -78,8 +78,8 @@ def search():
 
 @app.route("/search/<string:isbns>")
 def book(isbns):
-	res = requests.get("https://www.goodreads.com/book/review_counts.json",params={"key": "KEY", "isbn": isbns})
+	res = requests.get("https://www.goodreads.com/book/review_counts.json",params={"key": "AmhXXoryvlEpPgO9vDnJFg", "isbns": isbns})
 	book = res.json()
-	author = db.execute("SELECT author FROM books WHERE isbn = :isbn",{"isbn":isbn})
-	title = db.execute("SELECT title FROM books WHERE isbn = :isbn",{"isbn":isbn})
-	return render_template("book.html",book=book,author=author,title=title)
+	author = db.execute("SELECT author FROM books WHERE isbn = :isbn",{"isbn":isbns})
+	title = db.execute("SELECT title FROM books WHERE isbn = :isbn",{"isbn":isbns})
+	return render_template("book.html",author=author,title=title)
