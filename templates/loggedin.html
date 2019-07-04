@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+	<head>
+		<meta charset="utf-8">
+		<title>Welcome</title>
+		<link rel="stylesheet" href="{{url_for('static', filename='bootstrap.min.css')}}">
+		<link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+		<script src="{{url_for('static', filename='jquery-3.3.1.slim.min.js')}}" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="{{url_for('static', filename='popper.min.js')}}" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="{{url_for('static', filename='bootstrap.min.js')}}" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	</head>
+	<body>
+		<h1>Welcome to the book review website.</h1>
+		<div class="loggedin-page">
+			<section class="collections">
+				<h3>Your Collections</h3>
+			</section>
+			<section class="search">
+				<form action="{{url_for('search')}}" method="post">
+					<div class="accordion" id="accordionExample">
+					  <div class="card">
+					    <div class="card-header" id="headingOne">
+					      <h2 class="mb-0">
+					        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+					          Title
+					        </button>
+					      </h2>
+					    </div>
+
+					    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+					      <div class="card-body">
+					        Title of the book:<input type="text" placeholder="Enter the title of the book" name="title" class="form-control"><br>
+					      </div>
+					    </div>
+					  </div>
+					  <div class="card">
+					    <div class="card-header" id="headingTwo">
+					      <h2 class="mb-0">
+					        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+					          Author
+					        </button>
+					      </h2>
+					    </div>
+					    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+					      <div class="card-body">
+					        Author name:<input type="text" placeholder="Enter the author name" name="author" class="form-control"><br>
+					      </div>
+					    </div>
+					  </div>
+					  <div class="card">
+					    <div class="card-header" id="headingThree">
+					      <h2 class="mb-0">
+					        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+					          ISBN
+					        </button>
+					      </h2>
+					    </div>
+					    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+					      <div class="card-body">
+					        ISBN number:<input type="number" placeholder="Enter the isbn no. of the book" name="isbn" class="form-control"><br>
+					      </div>
+					    </div>
+					  </div>
+					</div>
+					<div class="button">
+						<button class="btn btn-primary">Submit</button>
+						<a class="btn btn-primary" href="{{url_for('index')}}">Log-out</a>
+					</div>
+				</form>
+			</section>
+		</div>
+	</body>
+</html>
