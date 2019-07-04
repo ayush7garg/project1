@@ -59,15 +59,22 @@ def afterlogin():
 
 @app.route("/search",methods=['POST'])
 def search():
-
+    books=db.execute("SELECT * FROM books").fetchall()
+    req_books=[]
 	author = request.form.get("author")
 	title = request.form.get("title")
 	isbn = request.form.get("isbn")
-	if db.execute("SELECT * FROM books WHERE (author LIKE (author) OR title LIKE (title) OR isbn LIKE (isbn))",{"author":author,"title":title,"isbn":isbn}).rowcount!=0:
-		bookss = db.execute("SELECT * FROM books WHERE (author LIKE (author) OR title LIKE (title) OR isbn LIKE (isbn))",{"author":author,"title":title,"isbn":isbn}).fetchall()
-		return render_template("search.html",bookss = bookss)
-	else:
-		return render_template("error.html",message="Sorry, No book found.")
+    for book in books:
+        if ((author in book.author) or (title in book .title) or (isbn in book.isbn)):
+            req_books.append(book)
+
+    if (len(req_books)!=0):
+        return render_template("search.html",bookss = req_books)
+	# if db.execute("SELECT * FROM books WHERE (author LIKE (author) OR title LIKE (title) OR isbn LIKE (isbn))",{"author":author,"title":title,"isbn":isbn}).rowcount!=0:
+	# 	bookss = db.execute("SELECT * FROM books WHERE (author LIKE (author) OR title LIKE (title) OR isbn LIKE (isbn))",{"author":author,"title":title,"isbn":isbn}).fetchall()
+	# 	return render_template("search.html",bookss = bookss)
+	# else:
+	# 	return render_template("error.html",message="Sorry, No book found.")
 
 @app.route("/search/<int:isbn>")
 def book(isbn):
