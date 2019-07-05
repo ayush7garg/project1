@@ -4,6 +4,8 @@ from flask import Flask, session,render_template,request
 from flask_session import Session
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
+import urllib.parse
+import urllib.request
 
 app = Flask(__name__)
 
@@ -87,8 +89,10 @@ def search():
 
 @app.route("/search/<string:isbns>")
 def book(isbns):
-	res = requests.get("https://www.goodreads.com/book/review_counts.json",params={"key": "KEY", "isbns": isbns})
-	book = res.json()
-	author = db.execute("SELECT author FROM books WHERE isbn = :isbn",{"isbn":isbns})
-	title = db.execute("SELECT title FROM books WHERE isbn = :isbn",{"isbn":isbns})
-	return render_template("book.html",author=author,title=title)
+    res = requests.get("https://www.goodreads.com/book/review_counts.json", params={"key": "oMYVEpw7QCoGq9ItLysw", "isbns": "1451648537"})
+    r = res.json()
+    r = r.get("average_rating","")
+    book = db.execute("SELECT * FROM books WHERE isbn = :isbn",{"isbn":isbns}).fetchone()
+    # author = db.execute("SELECT author FROM books WHERE isbn = :isbn",{"isbn":isbns})
+    # title = db.execute("SELECT title FROM books WHERE isbn = :isbn",{"isbn":isbns})
+    return render_template("book.html",book=book,rating=r)
