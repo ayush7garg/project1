@@ -64,9 +64,18 @@ def search():
     author = request.form.get("author")
     title = request.form.get("title")
     isbn = request.form.get("isbn")
-    for book in books:
-        if ((author in book.author) or (title in book .title) or (isbn in book.isbn)):
-            req_books.append(book)
+    if (author=="NULL" and title=="NULL" and isbn=="NULL" ):
+        return render_template("error.html",message="Please enter the details of the book :)")
+    else:
+        for book in books:
+            if (author!="NULL" and author in book.author and book not in req_books):
+                req_books.append(book)
+            elif (title!="NULL" and title in book.title and book not in req_books):
+                req_books.append(book)
+            elif (isbn!="NULL" and isbn in book.isbn and book not in req_books):
+                req_books.append(book)
+            # if ((author in book.author) or (title in book .title) or (isbn in book.isbn)):
+            #     req_books.append(book)
 
     if (len(req_books)!=0):
         return render_template("search.html",bookss = req_books)
@@ -78,7 +87,7 @@ def search():
 
 @app.route("/search/<string:isbns>")
 def book(isbns):
-	res = requests.get("https://www.goodreads.com/book/review_counts.json",params={"key": "AmhXXoryvlEpPgO9vDnJFg", "isbns": isbns})
+	res = requests.get("https://www.goodreads.com/book/review_counts.json",params={"key": "KEY", "isbns": isbns})
 	book = res.json()
 	author = db.execute("SELECT author FROM books WHERE isbn = :isbn",{"isbn":isbns})
 	title = db.execute("SELECT title FROM books WHERE isbn = :isbn",{"isbn":isbns})
