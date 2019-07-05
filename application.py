@@ -1,11 +1,12 @@
 import os
 import requests
-from flask import Flask, session,render_template,request
+from flask import Flask, session,render_template,request,abort
 from flask_session import Session
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 import urllib.parse
 import urllib.request
+import json
 
 app = Flask(__name__)
 
@@ -89,10 +90,21 @@ def search():
 
 @app.route("/search/<string:isbns>")
 def book(isbns):
-    res = requests.get("https://www.goodreads.com/book/review_counts.json", params={"key": "oMYVEpw7QCoGq9ItLysw", "isbns": "1451648537"})
-    r = res.json()
+    res = requests.get("https://www.goodreads.com/book/review_counts.json", params={"key": "oMYVEpw7QCoGq9ItLysw", "isbns": "isbns"})
+    res = res.json()
+    r = json.loads(res)
+    # r = res.json()
     r = r.get("average_rating","")
     book = db.execute("SELECT * FROM books WHERE isbn = :isbn",{"isbn":isbns}).fetchone()
     # author = db.execute("SELECT author FROM books WHERE isbn = :isbn",{"isbn":isbns})
     # title = db.execute("SELECT title FROM books WHERE isbn = :isbn",{"isbn":isbns})
     return render_template("book.html",book=book,rating=r)
+@app.route("/api/<isbns>")
+def api(isbns):
+    res = requests.get("https://www.goodreads.com/book/review_counts.json", params={"key": "oMYVEpw7QCoGq9ItLysw", "isbns": "isbns"})
+    r = res.json()
+    re = json.loads(r)
+    if r!="NULL":
+        print(re)
+    else:
+        abort(404)
