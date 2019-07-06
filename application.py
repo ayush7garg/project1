@@ -62,26 +62,42 @@ def afterlogin():
 
 @app.route("/search",methods=['POST'])
 def search():
-    books = db.execute("SELECT*FROM books").fetchall()
+
     req_books = []
     author = request.form.get("author")
     title = request.form.get("title")
     isbn = request.form.get("isbn")
-    if (author=="NULL" and title=="NULL" and isbn=="NULL" ):
+    if(author is "NULL" and title is "NULL" and isbn is "NULL" ):
         return render_template("error.html",message="Please enter the details of the book :)")
     else:
+        books = db.execute("SELECT*FROM books").fetchall()
         for book in books:
-            if (author!="NULL" and author in book.author and book not in req_books):
-                req_books.append(book)
-            elif (title!="NULL" and title in book.title and book not in req_books):
-                req_books.append(book)
-            elif (isbn!="NULL" and isbn in book.isbn and book not in req_books):
-                req_books.append(book)
-            # if ((author in book.author) or (title in book .title) or (isbn in book.isbn)):
-            #     req_books.append(book)
-
+            if (author is not "NULL"):
+                if (author in book.author and book not in req_books):
+                    req_books.append(book)
+            if (title is not "NULL"):
+                if (title in book.title and book not in req_books):
+                    req_books.append(book)
+            if (isbn is not "NULL"):
+                if (isbn in book.isbn and book not in req_books):
+                    req_books.append(book)
     if (len(req_books)!=0):
         return render_template("search.html",bookss = req_books)
+    # if (author is "NULL" and title is "NULL" and isbn is "NULL" ):
+    #     return render_template("error.html",message="Please enter the details of the book :)")
+    # else:
+    #     for book in books:
+    #         if (author!="NULL" and author in book.author and book not in req_books):
+    #             req_books.append(book)
+    #         elif (title!="NULL" and title in book.title and book not in req_books):
+    #             req_books.append(book)
+    #         elif (isbn!="NULL" and isbn in book.isbn and book not in req_books):
+    #             req_books.append(book)
+    #         # if ((author in book.author) or (title in book .title) or (isbn in book.isbn)):
+    #         #     req_books.append(book)
+
+
+
     # if db.execute("SELECT * FROM books WHERE (author LIKE (author) OR title LIKE (title) OR isbn LIKE (isbn))",{"author":author,"title":title,"isbn":isbn}).rowcount!=0:
     # 	bookss = db.execute("SELECT * FROM books WHERE (author LIKE (author) OR title LIKE (title) OR isbn LIKE (isbn))",{"author":author,"title":title,"isbn":isbn}).fetchall()
     # 	return render_template("search.html",bookss = bookss)
