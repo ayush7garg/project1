@@ -88,23 +88,27 @@ def search():
     # else:
     # 	return render_template("error.html",message="Sorry, No book found.")
 
-@app.route("/search/<isbns>")
+@app.route("/search/<string:isbns>")
 def book(isbns):
-    if res = requests.get(url = "https://www.goodreads.com/book/review_counts.json", params = {"key": "oMYVEpw7QCoGq9ItLysw", "isbns": isbns}):
-        r = res.json()
-        # r = json.loads(res)
-        # r = res.json()
-        r = r['books'][0]['average_rating']
-
-    book = db.execute("SELECT * FROM books WHERE isbn = :isbn",{"isbn":isbns}).fetchone()
+    her_isbn=isbns
+    if(len(isbns)<10):
+        while(len(isbns)!=10):
+            isbns = '0'+isbns
+    res = requests.get(url = "https://www.goodreads.com/book/review_counts.json", params = {"key": "oMYVEpw7QCoGq9ItLysw", "isbns": isbns})
+    r = res.json()
+    r = r['books'][0]['average_rating']
+    book = db.execute("SELECT * FROM books WHERE isbn = :isbn",{"isbn":her_isbn}).fetchone()
     # author = db.execute("SELECT author FROM books WHERE isbn = :isbn",{"isbn":isbns})
     # title = db.execute("SELECT title FROM books WHERE isbn = :isbn",{"isbn":isbns})
     return render_template("book.html",book=book,rating=r)
-@app.route("/api/<isbns>")
+@app.route("/api/<string:isbns>")
 def api(isbns):
+    her_isbn=isbns
+    if(len(isbns)<10):
+        while(len(isbns)!=10):
+            isbns = '0'+isbns
     res = requests.get("https://www.goodreads.com/book/review_counts.json", params={"key": "oMYVEpw7QCoGq9ItLysw", "isbns": isbns})
     r = res.json()
-    # re = json.loads(r)
     if r!="NULL":
         print(r)
     else:
