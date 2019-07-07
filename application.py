@@ -71,18 +71,55 @@ def search():
     title = title.lower()
     author = author.lower()
     isbn = isbn.lower()
-    author = '%'+author+'%'
-    title = '%'+title+'%'
-    isbn = '%'+isbn+'%'
-    connection = psycopg2.connect(user="vssprwfhhsjhyi",
-                              password="445f9361281f744abebdf72e1a375c0c4ef05a82e322a6d6a71ebf955310b154",
-                              host="ec2-54-225-129-101.compute-1.amazonaws.com",
-                              port="5432",
-                              database="d723f6ft1g0vt8")
-    cursor = connection.cursor()
-    postgreSQL_select_Query = "select * from books where LOWER(author) LIKE %s"
-    cursor.execute(postgreSQL_select_Query, (author,))
-    req_books = cursor.fetchall()
+    if ((not title) and (not author) and(not isbn)):
+        return render_template("error.html",message="Please enter the details of the book :)")
+    else:
+        connection = psycopg2.connect(user="vssprwfhhsjhyi",
+                                  password="445f9361281f744abebdf72e1a375c0c4ef05a82e322a6d6a71ebf955310b154",
+                                  host="ec2-54-225-129-101.compute-1.amazonaws.com",
+                                  port="5432",
+                                  database="d723f6ft1g0vt8")
+        cursor = connection.cursor()
+        if(title and author and isbn):
+            author = '%'+author+'%'
+            title = '%'+title+'%'
+            isbn = '%'+isbn+'%'
+            postgreSQL_select_Query = "select * from books where LOWER(title) LIKE %s AND LOWER(author) LIKE %s AND LOWER(isbn) LIKE %s"
+            cursor.execute(postgreSQL_select_Query, (title,author,isbn,))
+            req_books = cursor.fetchall()
+        elif(title and author and (not isbn)):
+            author = '%'+author+'%'
+            title = '%'+title+'%'
+            postgreSQL_select_Query = "select * from books where LOWER(title) LIKE %s AND LOWER(author) LIKE %s"
+            cursor.execute(postgreSQL_select_Query, (title,author,))
+            req_books = cursor.fetchall()
+        elif(title and isbn and (not author)):
+            isbn = '%'+isbn+'%'
+            title = '%'+title+'%'
+            postgreSQL_select_Query = "select * from books where LOWER(title) LIKE %s AND LOWER(isbn) LIKE %s"
+            cursor.execute(postgreSQL_select_Query, (title,isbn,))
+            req_books = cursor.fetchall()
+        elif(isbn and author and (not title)):
+            author = '%'+author+'%'
+            isbn = '%'+isbn+'%'
+            postgreSQL_select_Query = "select * from books where LOWER(isbn) LIKE %s AND LOWER(author) LIKE %s"
+            cursor.execute(postgreSQL_select_Query, (isbn,author,))
+            req_books = cursor.fetchall()
+        elif(author and (not title) and (not isbn)):
+            author = '%'+author+'%'
+            postgreSQL_select_Query = "select * from books where LOWER(author) LIKE %s"
+            cursor.execute(postgreSQL_select_Query, (author,))
+            req_books = cursor.fetchall()
+        elif(title and (not author) and (not isbn)):
+            title = '%'+title+'%'
+            postgreSQL_select_Query = "select * from books where LOWER(title) LIKE %s"
+            cursor.execute(postgreSQL_select_Query, (title,))
+            req_books = cursor.fetchall()
+        elif(isbn and (not title) and (not author)):
+            isbn = '%'+isbn+'%'
+            postgreSQL_select_Query = "select * from books where LOWER(isbn) LIKE %s"
+            cursor.execute(postgreSQL_select_Query, (isbn,))
+            req_books = cursor.fetchall()
     # sql = 'SELECT * FROM books WHERE author LIKE %s'
     # args = [author+'%']
     # if db.execute(sql,args).rowcount != 0:
