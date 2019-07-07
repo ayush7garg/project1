@@ -7,6 +7,7 @@ from sqlalchemy.orm import scoped_session, sessionmaker
 import urllib.parse
 import urllib.request
 import json
+import psycopg2
 
 app = Flask(__name__)
 
@@ -64,26 +65,29 @@ def afterlogin():
 def search():
 
     req_books = []
-    author = request.form.get("author")
     title = request.form.get("title")
+    author = request.form.get("author")
     isbn = request.form.get("isbn")
-    req_books = db.execute("SELECT * FROM books WHERE author LIKE :author",{"author": author}).fetchall()
-    # if(author is "NULL" and title is "NULL" and isbn is "NULL" ):
-    #     return render_template("error.html",message="Please enter the details of the book :)")
+    author = '%'+author+'%'
+    connection = psycopg2.connect(user="vssprwfhhsjhyi",
+                              password="445f9361281f744abebdf72e1a375c0c4ef05a82e322a6d6a71ebf955310b154",
+                              host="ec2-54-225-129-101.compute-1.amazonaws.com",
+                              port="5432",
+                              database="d723f6ft1g0vt8")
+    cursor = connection.cursor()
+    postgreSQL_select_Query = "select * from books where author LIKE %s"
+    cursor.execute(postgreSQL_select_Query, (author,))
+    req_books = cursor.fetchall()
+    # sql = 'SELECT * FROM books WHERE author LIKE %s'
+    # args = [author+'%']
+    # if db.execute(sql,args).rowcount != 0:
+    #     req_books = db.execute(sql,args).fetchall()
     # else:
-    #     books = db.execute("SELECT*FROM books").fetchall()
-    #     for book in books:
-    #         if (author is not "NULL"):
-    #             if (author in book.author and book not in req_books):
-    #                 req_books.append(book)
-    #         if (title is not "NULL"):
-    #             if (title in book.title and book not in req_books):
-    #                 req_books.append(book)
-    #         if (isbn is not "NULL"):
-    #             if (isbn in book.isbn and book not in req_books):
-    #                 req_books.append(book)
+    #     return render_template("error.html",message="Sorry, No book found.")
     if (len(req_books)!=0):
         return render_template("search.html",bookss = req_books)
+    else:
+        return render_template("error.html",message="Sorry, No book found.")
     # if (author is "NULL" and title is "NULL" and isbn is "NULL" ):
     #     return render_template("error.html",message="Please enter the details of the book :)")
     # else:
