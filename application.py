@@ -120,36 +120,10 @@ def search():
             postgreSQL_select_Query = "select * from books where LOWER(isbn) LIKE %s"
             cursor.execute(postgreSQL_select_Query, (isbn,))
             req_books = cursor.fetchall()
-    # sql = 'SELECT * FROM books WHERE author LIKE %s'
-    # args = [author+'%']
-    # if db.execute(sql,args).rowcount != 0:
-    #     req_books = db.execute(sql,args).fetchall()
-    # else:
-    #     return render_template("error.html",message="Sorry, No book found.")
     if (len(req_books)!=0):
         return render_template("search.html",bookss = req_books)
     else:
         return render_template("error.html",message="Sorry, No book found.")
-    # if (author is "NULL" and title is "NULL" and isbn is "NULL" ):
-    #     return render_template("error.html",message="Please enter the details of the book :)")
-    # else:
-    #     for book in books:
-    #         if (author!="NULL" and author in book.author and book not in req_books):
-    #             req_books.append(book)
-    #         elif (title!="NULL" and title in book.title and book not in req_books):
-    #             req_books.append(book)
-    #         elif (isbn!="NULL" and isbn in book.isbn and book not in req_books):
-    #             req_books.append(book)
-    #         # if ((author in book.author) or (title in book .title) or (isbn in book.isbn)):
-    #         #     req_books.append(book)
-
-
-
-    # if db.execute("SELECT * FROM books WHERE (author LIKE (author) OR title LIKE (title) OR isbn LIKE (isbn))",{"author":author,"title":title,"isbn":isbn}).rowcount!=0:
-    # 	bookss = db.execute("SELECT * FROM books WHERE (author LIKE (author) OR title LIKE (title) OR isbn LIKE (isbn))",{"author":author,"title":title,"isbn":isbn}).fetchall()
-    # 	return render_template("search.html",bookss = bookss)
-    # else:
-    # 	return render_template("error.html",message="Sorry, No book found.")
 
 @app.route("/search/<string:isbns>")
 def book(isbns):
