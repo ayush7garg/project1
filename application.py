@@ -67,20 +67,21 @@ def search():
     author = request.form.get("author")
     title = request.form.get("title")
     isbn = request.form.get("isbn")
-    if(author is "NULL" and title is "NULL" and isbn is "NULL" ):
-        return render_template("error.html",message="Please enter the details of the book :)")
-    else:
-        books = db.execute("SELECT*FROM books").fetchall()
-        for book in books:
-            if (author is not "NULL"):
-                if (author in book.author and book not in req_books):
-                    req_books.append(book)
-            if (title is not "NULL"):
-                if (title in book.title and book not in req_books):
-                    req_books.append(book)
-            if (isbn is not "NULL"):
-                if (isbn in book.isbn and book not in req_books):
-                    req_books.append(book)
+    req_books = db.execute("SELECT * FROM books WHERE author LIKE :author",{"author": author}).fetchall()
+    # if(author is "NULL" and title is "NULL" and isbn is "NULL" ):
+    #     return render_template("error.html",message="Please enter the details of the book :)")
+    # else:
+    #     books = db.execute("SELECT*FROM books").fetchall()
+    #     for book in books:
+    #         if (author is not "NULL"):
+    #             if (author in book.author and book not in req_books):
+    #                 req_books.append(book)
+    #         if (title is not "NULL"):
+    #             if (title in book.title and book not in req_books):
+    #                 req_books.append(book)
+    #         if (isbn is not "NULL"):
+    #             if (isbn in book.isbn and book not in req_books):
+    #                 req_books.append(book)
     if (len(req_books)!=0):
         return render_template("search.html",bookss = req_books)
     # if (author is "NULL" and title is "NULL" and isbn is "NULL" ):

@@ -22,7 +22,7 @@ header{
   /* position: static; */
 }
 /* ------------------------------------- */
-
+/* X-Content-Type-Options: nosniff */
 body{
   background: url("12.jpg") no-repeat fixed;
   background-size: cover;
