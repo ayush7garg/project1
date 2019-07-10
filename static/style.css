@@ -70,7 +70,7 @@ h1{
 
 /* FORM */
 .combine video{
-  z-index: -1;
+  z-index: -1 !important;
   width: 690px;
   height: 390px;
   /* height: auto; */
@@ -94,15 +94,18 @@ h1{
   height: 385px;
   width: 270px;
   background-color: rgba(255,255,255,0.7);
+  z-index: 2 !important;
 }
 
 .register{
   /* flex: 3; */
   color: black;
+  z-index: 2 !important;
 }
 .login{
   /* flex: 2; */
   color: black;
+  z-index: 2 !important;
 }
 
 
