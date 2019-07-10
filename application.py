@@ -121,11 +121,15 @@ def search():
             cursor.execute(postgreSQL_select_Query, (isbn,))
             req_books = cursor.fetchall()
     if (len(req_books)!=0):
+        i=[]
         for req_book in req_books:
-            if(len(req_book[1])<10):
-                while(len(req_book[1])!=10):
-                    req_book[1] = '0' + req_book[1]
-        return render_template("search.html",bookss = req_books)
+            i.append(req_book[1])
+        for j in range(len(i)):
+            if(len(i[j])<10):
+                while (len(i[j])!=10):
+                    i[j] = '0'+i[j]
+        no_of_books=len(req_books)
+        return render_template("search.html",bookss = req_books,i=i,no_of_books=no_of_books)
     else:
         return render_template("error.html",message="Sorry, No book found.")
 
