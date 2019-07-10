@@ -16,11 +16,11 @@
 	<ul>
 		{% for k in range(no_of_books) %}
 			<li>
-        <img src="http://covers.openlibrary.org/b/isbn/{{i[k]}}-L.jpg">
+        <img src="http://covers.openlibrary.org/b/isbn/{{i[k]}}-L.jpg" width="200px" height="300px">
 				<a = href="{{ url_for('book',isbns = bookss[k][1]) }}" style="color:white;">
 					{{ bookss[k][2] }} by {{ bookss[k][3] }}
 				</a>
-			</li>
+			</li><br>
 		{% endfor %}
 	</ul>
 </body>
