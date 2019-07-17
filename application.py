@@ -131,7 +131,7 @@ def search():
         no_of_books=len(req_books)
         return render_template("search.html",bookss = req_books,i=i,no_of_books=no_of_books)
     else:
-        return render_template("error.html",message="Sorry, No book found.")
+        return render_template("nobook.html",message="Sorry, No book found.")
     cursor.close()
     connection.close()
 @app.route("/search/<string:isbns>")
