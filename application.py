@@ -124,10 +124,6 @@ def search():
         i=[]
         for req_book in req_books:
             i.append(req_book[1])
-        for j in range(len(i)):
-            if(len(i[j])<10):
-                while (len(i[j])!=10):
-                    i[j] = '0'+i[j]
         no_of_books=len(req_books)
         return render_template("search.html",bookss = req_books,i=i,no_of_books=no_of_books)
     else:
@@ -136,29 +132,21 @@ def search():
     connection.close()
 @app.route("/search/<string:isbns>")
 def book(isbns):
-    her_isbn=isbns
-    if(len(isbns)<10):
-        while(len(isbns)!=10):
-            isbns = '0'+isbns
     res = requests.get(url = "https://www.goodreads.com/book/review_counts.json", params = {"key": "oMYVEpw7QCoGq9ItLysw", "isbns": isbns})
     r = res.json()
     r = r['books'][0]['average_rating']
-    book = db.execute("SELECT * FROM books WHERE isbn = :isbn",{"isbn":her_isbn}).fetchone()
+    book = db.execute("SELECT * FROM books WHERE isbn = :isbn",{"isbn":isbns}).fetchone()
     # author = db.execute("SELECT author FROM books WHERE isbn = :isbn",{"isbn":isbns})
     # title = db.execute("SELECT title FROM books WHERE isbn = :isbn",{"isbn":isbns})
     return render_template("book.html",book=book,rating=r)
 @app.route("/api/<string:isbns>")
 def api(isbns):
-    her_isbn=isbns
-    if(len(isbns)<10):
-        while(len(isbns)!=10):
-            isbns = '0'+isbns
     if requests.get("https://www.goodreads.com/book/review_counts.json", params={"key": "oMYVEpw7QCoGq9ItLysw", "isbns": isbns}):
         res = requests.get("https://www.goodreads.com/book/review_counts.json", params={"key": "oMYVEpw7QCoGq9ItLysw", "isbns": isbns})
         r = res.json()
-        title,author,year = db.execute("SELECT title,author,year FROM books WHERE isbn = :isbn",{"isbn":her_isbn}).fetchone()
+        title,author,year = db.execute("SELECT title,author,year FROM books WHERE isbn = :isbn",{"isbn":isbns}).fetchone()
         ratings_count = r['books'][0]['work_ratings_count']
         average_rating = r['books'][0]['average_rating']
-        return render_template("api.html",title=title,author=author,year=year,isbn=her_isbn,ratings_count=ratings_count,average_rating=average_rating)
+        return render_template("api.html",title=title,author=author,year=year,isbn=isbns,ratings_count=ratings_count,average_rating=average_rating)
     else:
         abort(404)
