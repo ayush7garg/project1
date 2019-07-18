@@ -192,11 +192,15 @@ h1{
 }
 /* ---------------------------------------- */
 /* SEARCH RESULTS */
-main{
-  margin-left: 20px;
+table{
+  margin-left: 50px;
 }
-.search-results{
-  display: inline;
+.title{
+  font-size: 25px;
+  font-weight: bold;
+}
+.author{
+  font-size:20px;
 }
 /* ---------------------------------------------- */
 /* RATING SYSTEM */
@@ -216,7 +220,7 @@ main{
   left: 0;
   white-space: nowrap;
   overflow: hidden;
-  width: 0;
+  /* width: 0; */
 }
 
 .stars-inner::before {
