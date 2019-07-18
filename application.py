@@ -156,7 +156,6 @@ def api(isbns):
     if requests.get("https://www.goodreads.com/book/review_counts.json", params={"key": "oMYVEpw7QCoGq9ItLysw", "isbns": isbns}):
         res = requests.get("https://www.goodreads.com/book/review_counts.json", params={"key": "oMYVEpw7QCoGq9ItLysw", "isbns": isbns})
         r = res.json()
-        print(r)
         title,author,year = db.execute("SELECT title,author,year FROM books WHERE isbn = :isbn",{"isbn":her_isbn}).fetchone()
         # title = r['books'][0]['title']
         # author = r['books'][0]['author']
