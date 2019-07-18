@@ -195,6 +195,9 @@ h1{
 main{
   margin-left: 20px;
 }
+.search-results{
+  display: inline;
+}
 /* ---------------------------------------------- */
 /* RATING SYSTEM */
 .stars-outer {
