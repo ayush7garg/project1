@@ -20,15 +20,18 @@
 			<!-- <li> -->
       <section>
         <img src="http://covers.openlibrary.org/b/isbn/{{i[k]}}-L.jpg" width="140px" height="190px">
+        <div>
   				<a = href="{{ url_for('book',isbns = bookss[k][1]) }}" style="color:white;">
   					{{ bookss[k][2] }}
   				</a>
-           by {{ bookss[k][3] }}
+           <br>by {{ bookss[k][3] }}<br>
           <div class="stars-outer">
             <div class="stars-inner"></div>
           </div>
+        </div>
         <br>
       </section>
+      <br>
 			<!-- </li> -->
 		{% endfor %}
 	<!-- </ul> -->
