@@ -136,8 +136,6 @@ def book(isbns):
     r = res.json()
     r = r['books'][0]['average_rating']
     book = db.execute("SELECT * FROM books WHERE isbn = :isbn",{"isbn":isbns}).fetchone()
-    # author = db.execute("SELECT author FROM books WHERE isbn = :isbn",{"isbn":isbns})
-    # title = db.execute("SELECT title FROM books WHERE isbn = :isbn",{"isbn":isbns})
     return render_template("book.html",book=book,rating=r)
 @app.route("/api/<string:isbns>")
 def api(isbns):
