@@ -1,51 +1,52 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="utf-8" />
-    <title>Search results</title>
-    <script src="https://use.fontawesome.com/40a4b72f2c.js"></script>
-		<link rel="stylesheet" href="{{url_for('static', filename='bootstrap.min.css')}}">
-    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
-    <script src="{{url_for('static', filename='jquery-3.3.1.slim.min.js')}}" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="{{url_for('static', filename='popper.min.js')}}" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="{{url_for('static', filename='bootstrap.min.js')}}" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <meta charset="utf-8" />
+  <title>Search results</title>
+  <script src="https://use.fontawesome.com/40a4b72f2c.js"></script>
+  <link rel="stylesheet" href="{{url_for('static', filename='bootstrap.min.css')}}">
+  <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+  <script src="{{url_for('static', filename='jquery-3.3.1.slim.min.js')}}" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="{{url_for('static', filename='popper.min.js')}}" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="{{url_for('static', filename='bootstrap.min.js')}}" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
 </head>
 <body>
   <!-- <table class="book-details"> -->
-    <!-- <tbody> -->
-      <!-- <tr> -->
-        <!-- <td> -->
-          <img src="http://covers.openlibrary.org/b/isbn/{{book.isbn}}-L.jpg" width="240px" height="350px" class="coverpage">
-        <!-- </td> -->
-        <!-- <td> -->
-        <section>
-        	Title: {{book.title}}<br>
-        	Author: {{book.author}}<br>
-          Publication Year: {{book.year}}<br>
-          ISBN Number: {{book.isbn}}<br>
-          Ratings: {{rating}}<br>
-          <div class="ratings">
-            How much rating will you give for this book?<br>
-            <div class="rate">
-              <input type="radio" id="star5" name="rate" value="5" />
-              <label for="star5" title="text">5 stars</label>
-              <input type="radio" id="star4" name="rate" value="4" />
-              <label for="star4" title="text">4 stars</label>
-              <input type="radio" id="star3" name="rate" value="3" />
-              <label for="star3" title="text">3 stars</label>
-              <input type="radio" id="star2" name="rate" value="2" />
-              <label for="star2" title="text">2 stars</label>
-              <input type="radio" id="star1" name="rate" value="1" />
-              <label for="star1" title="text">1 star</label>
-            </div>
-          </div>
-        </section>
-        <!-- </td> -->
-      <!-- </tr> -->
-    <!-- </tbody> -->
+  <!-- <tbody> -->
+  <!-- <tr> -->
+  <!-- <td> -->
+  <img src="http://covers.openlibrary.org/b/isbn/{{book.isbn}}-L.jpg" width="240px" height="350px" class="coverpage">
+  <!-- </td> -->
+  <!-- <td> -->
+  <section>
+    Title: {{book.title}}<br>
+    Author: {{book.author}}<br>
+    Publication Year: {{book.year}}<br>
+    ISBN Number: {{book.isbn}}<br>
+    Ratings: {{rating}}<br>
+    <form>
+      <div class="ratings">
+        How much rating will you give for this book?<br>
+        <div class="rate">
+          <input type="radio" id="star5" name="rate" value="5" />
+          <label for="star5" title="text">5 stars</label>
+          <input type="radio" id="star4" name="rate" value="4" />
+          <label for="star4" title="text">4 stars</label>
+          <input type="radio" id="star3" name="rate" value="3" />
+          <label for="star3" title="text">3 stars</label>
+          <input type="radio" id="star2" name="rate" value="2" />
+          <label for="star2" title="text">2 stars</label>
+          <input type="radio" id="star1" name="rate" value="1" />
+          <label for="star1" title="text">1 star</label>
+        </div>
+      </div>
+    </form>
+  </section>
+  <!-- </td> -->
+  <!-- </tr> -->
+  <!-- </tbody> -->
   <!-- </table> -->
-
 </body>
 </html>
