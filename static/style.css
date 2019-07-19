@@ -228,7 +228,20 @@ table{
   color: #f8ce0b;
 }
 /* ----------------------------------- */
+/* BOOK DETAILS PAGE */
+
+.details{
+  text-align: center;
+  font-weight: bold;
+  margin: 15px auto;
+  font-size: 350%;
+}
+
 /* SUBMIT RATINGS */
+*{
+    margin: 0;
+    padding: 0;
+}
 .rate {
     float: left;
     height: 46px;
