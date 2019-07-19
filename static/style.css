@@ -238,10 +238,10 @@ table{
 }
 
 /* SUBMIT RATINGS */
-*{
+/* *{
     margin: 0;
     padding: 0;
-}
+} */
 .rate {
     float: left;
     height: 46px;
@@ -280,7 +280,4 @@ table{
 .ratings{
   margin: 20px;
   margin-left: 280px;
-  border: solid 1px;
-  border-color: #ffffff;
-  border-width: thick;
 }
