@@ -277,3 +277,10 @@ table{
 .rate > label:hover ~ input:checked ~ label {
     color: #c59b08;
 }
+.ratings{
+  margin: 20px;
+  margin-left: 280px;
+  border: solid 1px;
+  border-color: #ffffff;
+  border-width: thick;
+}
