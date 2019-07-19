@@ -233,7 +233,7 @@ table{
 .details{
   text-align: center;
   font-weight: bold;
-  margin: 15px auto;
+  margin: 15px;
   font-size: 350%;
 }
 
@@ -277,7 +277,7 @@ table{
 .rate > label:hover ~ input:checked ~ label {
     color: #c59b08;
 }
-.ratings{
+/* .ratings{
   margin: 20px;
   margin-left: 280px;
-}
+} */
