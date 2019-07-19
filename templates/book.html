@@ -13,19 +13,21 @@
 
 </head>
 <body>
-	<h3 class="details">Details of the book are</h3>
-  <table>
-    <tbody>
-      <tr>
-        <td><img src="http://covers.openlibrary.org/b/isbn/{{book.isbn}}-L.jpg" width="240px" height="350px"></td>
-        <td>
-        	Title of the book: {{book.title}}<br>
-        	Author of the book: {{book.author}}<br>
+  <!-- <table class="book-details"> -->
+    <!-- <tbody> -->
+      <!-- <tr> -->
+        <!-- <td> -->
+          <img src="http://covers.openlibrary.org/b/isbn/{{book.isbn}}-L.jpg" width="240px" height="350px" class="coverpage">
+        <!-- </td> -->
+        <!-- <td> -->
+        <section>
+        	Title: {{book.title}}<br>
+        	Author: {{book.author}}<br>
           Publication Year: {{book.year}}<br>
           ISBN Number: {{book.isbn}}<br>
-          Ratings for the book:{{rating}}<br>
+          Ratings: {{rating}}<br>
           <div class="ratings">
-            How much rating will you give for this book?
+            How much rating will you give for this book?<br>
             <div class="rate">
               <input type="radio" id="star5" name="rate" value="5" />
               <label for="star5" title="text">5 stars</label>
@@ -39,10 +41,11 @@
               <label for="star1" title="text">1 star</label>
             </div>
           </div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+        </section>
+        <!-- </td> -->
+      <!-- </tr> -->
+    <!-- </tbody> -->
+  <!-- </table> -->
 
 </body>
 </html>

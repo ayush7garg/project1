@@ -229,7 +229,9 @@ table{
 }
 /* ----------------------------------- */
 /* BOOK DETAILS PAGE */
-
+.coverpage{
+  margin: 20px;
+}
 .details{
   text-align: center;
   font-weight: bold;
@@ -279,5 +281,5 @@ table{
 }
 /* .ratings{
   margin: 20px;
-  margin-left: 280px;
+
 } */
