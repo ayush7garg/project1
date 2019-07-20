@@ -153,6 +153,7 @@ h1{
    background-image: linear-gradient(to right top, #a60810, #ba1a25, #cd2839, #e0374e, #f24563);
    border-radius: 40%;
    border-width: 0;
+   /* margin: 10px 47.03%; */
 }
 
 /* ----------------------------------------------------------- */
@@ -238,7 +239,10 @@ table{
   margin: 15px;
   font-size: 350%;
 }
-
+.ratings{
+  margin-left: 20px;
+  color: white;
+}
 /* SUBMIT RATINGS */
 /* *{
     margin: 0;
