@@ -234,14 +234,16 @@ table{
   margin: 20px;
 }
 .details{
-  text-align: center;
-  font-weight: bold;
-  margin: 15px;
-  font-size: 350%;
+  min-height: 150px;
+  font-size: 20px;
 }
 .ratings{
   margin-left: 20px;
   color: white;
+}
+.reviews{
+  height: 30px;
+  margin-bottom: 25px;
 }
 /* SUBMIT RATINGS */
 /* *{

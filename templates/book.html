@@ -21,14 +21,16 @@
   <!-- </td> -->
   <!-- <td> -->
   <section class="ratings">
+    <div class="details">
     Title: {{book.title}}<br>
     Author: {{book.author}}<br>
     Publication Year: {{book.year}}<br>
     ISBN Number: {{book.isbn}}<br>
     Goodreads Ratings: {{rating}}<br>
+  </div>
     <form>
       <div class="ratings">
-        How much rating will you give for this book?<br>
+        How much rating will you give for this book?
         <div class="rate">
           <input type="radio" id="star5" name="rate" value="5" />
           <label for="star5" title="text">5 stars</label>
@@ -42,6 +44,7 @@
           <label for="star1" title="text">1 star</label>
         </div>
       </div>
+      <br><br>
       <div class="reviews">
         <input placeholder="Your reviews"/>
       </div>
