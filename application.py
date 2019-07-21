@@ -59,7 +59,7 @@ def afterlogin():
 		return render_template("error.html", message="This email id is not registered with us.")
 	elif db.execute("SELECT * FROM users WHERE password = :password AND email = :email", {"email": email,"password":password}).rowcount ==0:
 		return render_template("error.html", message="Please enter the correct password.")
-	return render_template("loggedin.html")
+	return render_template("loggedin.html",message="What are you looking for?")
 
 @app.route("/search",methods=['POST'])
 def search():
