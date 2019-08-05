@@ -158,9 +158,10 @@ h1{
 
 /* ----------------------------------------------------------- */
 /* loggedin-page */
-.logged-in{
+.loggedin-page{
+  margin-top: 15px;
   display: grid;
-  grid-template-columns: 66% 33%;
+  grid-template-columns: 40% 60%;
 }
 .collections{
   grid-column-start: 1;
@@ -173,6 +174,9 @@ h1{
   grid-column-end: 3;
   /* grid-row-start: 2;
   grid-row-end: 3 */
+}
+.loggedin-message{
+  text-align: center;
 }
 
 .accordion{
