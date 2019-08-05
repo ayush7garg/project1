@@ -72,7 +72,7 @@ def search():
     author = author.lower()
     isbn = isbn.lower()
     if ((not title) and (not author) and(not isbn)):
-        return render_template("error.html",message="Please enter the details of the book :)")
+        return render_template("loggedin.html",message="Please enter the details of the book :)")
     else:
         connection = psycopg2.connect(user="vssprwfhhsjhyi",
                                   password="445f9361281f744abebdf72e1a375c0c4ef05a82e322a6d6a71ebf955310b154",
@@ -124,7 +124,7 @@ def search():
         no_of_books=len(req_books)
         return render_template("search.html",bookss = req_books,no_of_books=no_of_books)
     else:
-        return render_template("nobook.html",message="Sorry, No book found.")
+        return render_template("loggedin.html",message="Sorry, No book found.")
     cursor.close()
     connection.close()
 @app.route("/search/<string:isbns>")
