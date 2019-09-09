@@ -56,7 +56,7 @@ def afterlogin():
 	email = request.form.get("email")
 	password = request.form.get("password")
 	if db.execute("SELECT * FROM users WHERE email = :email", {"email": email}).rowcount == 0:
-		return render_template("error.html", message="This email id is not registered with us.")
+		return render_template("error.html", message="This email id is not registered with us.Please sign up!!")
 	elif db.execute("SELECT * FROM users WHERE password = :password AND email = :email", {"email": email,"password":password}).rowcount ==0:
 		return render_template("error.html", message="Please enter the correct password.")
 	return render_template("loggedin.html",message="What are you looking for?")
