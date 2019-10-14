@@ -143,7 +143,7 @@ h1{
   /* border-style: double; */
   color: #26180b;
   /* border: 5px solid brown; */
-  background-image: linear-gradient(to right bottom, #fcad67, #d58e4f, #af7038, #8a5322, #67380c);
+   background-image: linear-gradient(to right top, #1366e3, #4a63db, #6461d3, #765fca, #845ec2);
 }
 .button{
   text-align: center;
